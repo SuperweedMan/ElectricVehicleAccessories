@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Startup/subdir.mk
+-include Src/Class/CKeyboard/subdir.mk
 -include Src/Class/subdir.mk
 -include Src/Cfile/subdir.mk
 -include Src/subdir.mk
@@ -53,16 +54,13 @@ default.size.stdout \
 OBJDUMP_LIST += \
 ElectricVehicleAccessories.list \
 
-OBJCOPY_HEX += \
-ElectricVehicleAccessories.hex \
-
 
 # All Target
 all: ElectricVehicleAccessories.elf secondary-outputs
 
 # Tool invocations
 ElectricVehicleAccessories.elf: $(OBJS) $(USER_OBJS) C:\Users\wyz\source\cubeIDErepos\ElectricVehicleAccessories\STM32F103C8TX_FLASH.ld
-	arm-none-eabi-g++ -o "ElectricVehicleAccessories.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\wyz\source\cubeIDErepos\ElectricVehicleAccessories\STM32F103C8TX_FLASH.ld" -Wl,-Map="ElectricVehicleAccessories.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "ElectricVehicleAccessories.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\wyz\source\cubeIDErepos\ElectricVehicleAccessories\STM32F103C8TX_FLASH.ld" -Wl,-Map="ElectricVehicleAccessories.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,17 +74,12 @@ ElectricVehicleAccessories.list: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ElectricVehicleAccessories.hex: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "ElectricVehicleAccessories.hex"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 # Other Targets
 clean:
 	-$(RM) *
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 .PHONY: all clean dependents
 .SECONDARY:

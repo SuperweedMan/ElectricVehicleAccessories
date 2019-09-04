@@ -14,7 +14,6 @@ CPP_SRCS :=
 S_UPPER_SRCS := 
 O_SRCS := 
 CC_DEPS := 
-OBJCOPY_HEX := 
 SIZE_OUTPUT := 
 OBJDUMP_LIST := 
 C++_DEPS := 
@@ -34,6 +33,7 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang \
 Src/Cfile \
 Src/Class \
+Src/Class/CKeyboard \
 Src \
 Startup \
 

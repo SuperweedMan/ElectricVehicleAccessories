@@ -8,15 +8,17 @@
 #ifndef CLASS_CSTATEMACHINE_CSTATEBASE_H_
 #define CLASS_CSTATEMACHINE_CSTATEBASE_H_
 #include "CMachineEventBase.h"
-#include "CStateMachine.h"
+
 
 namespace wyz {
-
+class CStateMachine;
 class CStateBase {
+
 public:
 	virtual ~CStateBase(){};
-	virtual void InvokeStateAction(CStateMachine* sm, const CMachineEventBase* data) = 0;
+	virtual void InvokeStateAction(CStateMachine* sm,  CMachineEventBase* data) = 0;
 private:
+
 };
 
 }  // namespace wyz

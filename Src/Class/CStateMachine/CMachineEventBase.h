@@ -11,6 +11,8 @@
 class CMachineEventBase {
 public:
 	virtual ~CMachineEventBase(){};
+	int m_InternalEventType;
+	int m_ExternalEventType;
 };
 
 
